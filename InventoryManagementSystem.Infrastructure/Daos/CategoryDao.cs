@@ -4,18 +4,18 @@ using NHibernate;
 
 namespace InventoryManagementSystem.Infrastructure.Daos
 {
-    public class CategoryDao : ICategoryDao
+    public class CategoryDao : BaseDao<Category>, ICategoryDao
     {
         private readonly ISession _session;
         private readonly ICriteria _criteria;
 
-        public CategoryDao(ISession session)
+        public CategoryDao(ISession session) : base(session)
         {
             _session = session;
             _criteria = _session.CreateCriteria<Category>();
         }
 
-        public async Task<IEnumerable<Category>> LoadCategoriesAsync()
+        public async Task<IEnumerable<Category>> LoadEntitiesAsync()
         {
             using var transaction = _session.BeginTransaction();
             string descOrderBy = "CreatedAt";
@@ -41,12 +41,7 @@ namespace InventoryManagementSystem.Infrastructure.Daos
                 {
                     transaction.Dispose();
                 }
-            };
-        }
-
-        public Task<Category> GetCategoryByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
+            }
         }
     }
 }

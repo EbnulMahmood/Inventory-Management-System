@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementSystem.Application.IDaos
 {
-    public interface ICategoryDao
+    public interface ICategoryDao : IBaseDao<Category>
     {
-        Task<IEnumerable<Category>> LoadCategoriesAsync();
-        Task<Category> GetCategoryByIdAsync(Guid id);
-    }
+        Task<IEnumerable<Category>> LoadEntitiesAsync();
+    } 
 }

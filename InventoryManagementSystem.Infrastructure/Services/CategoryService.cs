@@ -2,7 +2,6 @@
 using InventoryManagementSystem.Application.Extensions;
 using InventoryManagementSystem.Application.IDaos;
 using InventoryManagementSystem.Application.IServices;
-using InventoryManagementSystem.Domain.Entities;
 
 namespace InventoryManagementSystem.Infrastructure.Services
 {
@@ -15,18 +14,69 @@ namespace InventoryManagementSystem.Infrastructure.Services
             _categoryDao = categoryDao;
         }
 
-        public async Task<IEnumerable<CategoryDto>> LoadEntitiesAsync()
+        public async Task<IEnumerable<CategoryDto>?> LoadEntitiesAsync()
         {
-            IEnumerable<Category> entities = await _categoryDao.LoadCategoriesAsync();
-            var entitiesDto = entities.ConvertToDto();
-            return entitiesDto;
+            try
+            {
+                var entities = await _categoryDao.LoadEntitiesAsync();
+                if (entities == null) return null;
+
+                var entitiesDto = entities.ConvertToDto();
+
+                return entitiesDto;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            };
         }
 
-        public async Task<CategoryDto> GetEntityByIdAsync(Guid id)
+        public async Task<CategoryDto?> GetEntityByIdAsync(Guid id)
         {
-            var entity = await _categoryDao.GetCategoryByIdAsync(id);
-            var entityDto = entity.ConvertToDto();
-            return entityDto;
+            try
+            {
+                var entity = await _categoryDao.GetEntityByIdAsync(id);
+                if (entity == null) return null;
+
+                var entityDto = entity.ConvertToDto();
+                return entityDto;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            };
+        }
+
+        public async Task<bool> CreateEntityAsync(CategoryDto entityDto)
+        {
+            try
+            {
+                var entity = entityDto.ConvertToEntity();
+                if (!await _categoryDao.CreateEntityAsync(entity)) return false;
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            };
+        }
+
+        public async Task<bool> UpdateEntityAsync(CategoryDto entityDto)
+        {
+            try
+            {
+                var entity = entityDto.ConvertToEntity();
+                if (!await _categoryDao.UpdateEntityAsync(entity)) return false;
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            };
         }
     }
 }
