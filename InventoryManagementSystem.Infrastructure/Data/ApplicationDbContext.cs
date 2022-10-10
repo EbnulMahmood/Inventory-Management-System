@@ -1,4 +1,4 @@
-﻿using InventoryManagementSystem.Core.Entities;
+﻿using InventoryManagementSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

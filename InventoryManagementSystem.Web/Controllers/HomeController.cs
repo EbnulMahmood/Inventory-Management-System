@@ -1,4 +1,4 @@
-﻿using InventoryManagementSystem.Web.Models;
+﻿using InventoryManagementSystem.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
