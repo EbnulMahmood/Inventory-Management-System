@@ -13,8 +13,10 @@ namespace InventoryManagementSystem.Infrastructure.Mappings
         public CategoryMap()
         {
             Table("Categories");
+
             Id(x => x.Id);
-            Map(x => x.Name);
+            Map(x => x.FirstName);
+            Map(x => x.LastName);
             Map(x => x.CreatedAt);
             Map(x => x.ModifiedAt);
         }

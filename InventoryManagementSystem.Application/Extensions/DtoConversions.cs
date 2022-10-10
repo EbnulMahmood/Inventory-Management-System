@@ -16,7 +16,8 @@ namespace InventoryManagementSystem.Application.Extensions
                     select new CategoryDto
                     {
                         Id = category.Id,
-                        Name = category.Name,
+                        FirstName = category.FirstName,
+                        LastName = category.LastName,
                         Description = category.Description,
                         CreatedAt = category.CreatedAt,
                         ModifiedAt = category.ModifiedAt
@@ -28,7 +29,8 @@ namespace InventoryManagementSystem.Application.Extensions
             return (new CategoryDto
                     {
                         Id = category.Id,
-                        Name = category.Name,
+                        FirstName = category.FirstName,
+                        LastName = category.LastName,
                         Description = category.Description,
                         CreatedAt = category.CreatedAt,
                         ModifiedAt = category.ModifiedAt
