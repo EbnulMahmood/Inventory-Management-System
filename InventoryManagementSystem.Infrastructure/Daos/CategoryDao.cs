@@ -18,7 +18,7 @@ namespace InventoryManagementSystem.Infrastructure.Daos
         public async Task<IEnumerable<Category>> LoadCategoriesAsync()
         {
             using var transaction = _session.BeginTransaction();
-            string descOrderBy = "Created_At";
+            string descOrderBy = "CreatedAt";
             try
             {
                 IQuery sqlQuery = _session.CreateSQLQuery($"SELECT * FROM Categories " +
@@ -44,7 +44,7 @@ namespace InventoryManagementSystem.Infrastructure.Daos
             };
         }
 
-        public Task<Category> GetCategoryByIdAsync(int id)
+        public Task<Category> GetCategoryByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }

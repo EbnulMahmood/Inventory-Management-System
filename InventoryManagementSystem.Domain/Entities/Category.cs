@@ -11,7 +11,7 @@ namespace InventoryManagementSystem.Domain.Entities
         public virtual Guid Id { get; set; }
         public virtual string Name { get; set; }
         public virtual string Description { get; set; }
-        public virtual DateTime Created_At { get; set; } = DateTime.Now;
-        public virtual DateTime Modified_At { get; set; } = DateTime.Now;
+        public virtual DateTime CreatedAt { get; set; } = DateTime.Now;
+        public virtual DateTime ModifiedAt { get; set; } = DateTime.Now;
     }
 }

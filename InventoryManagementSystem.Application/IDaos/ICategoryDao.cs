@@ -10,6 +10,6 @@ namespace InventoryManagementSystem.Application.IDaos
     public interface ICategoryDao
     {
         Task<IEnumerable<Category>> LoadCategoriesAsync();
-        Task<Category> GetCategoryByIdAsync(int id);
+        Task<Category> GetCategoryByIdAsync(Guid id);
     }
 }

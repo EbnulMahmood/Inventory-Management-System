@@ -15,8 +15,8 @@ namespace InventoryManagementSystem.Infrastructure.Mappings
             Table("Categories");
             Id(x => x.Id);
             Map(x => x.Name);
-            Map(x => x.Created_At);
-            Map(x => x.Modified_At);
+            Map(x => x.CreatedAt);
+            Map(x => x.ModifiedAt);
         }
     }
 }

@@ -1,20 +1,20 @@
-﻿using InventoryManagementSystem.Application.IDaos;
+﻿using InventoryManagementSystem.Application.IServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryManagementSystem.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryDao _category;
+        private readonly ICategoryService _service;
 
-        public CategoryController(ICategoryDao category)
+        public CategoryController(ICategoryService service)
         {
-            _category = category;
+            _service = service;
         }
 
         public async Task<IActionResult> Index()
         {
-            var entities = await _category.LoadCategoriesAsync();
+            var entities = await _service.LoadEntitiesAsync();
             return View(entities);
         }
     }
