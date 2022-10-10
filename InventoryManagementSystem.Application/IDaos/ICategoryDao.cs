@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryManagementSystem.Application.IRepositories
+namespace InventoryManagementSystem.Application.IDaos
 {
-    public interface ICategoryRepository
+    public interface ICategoryDao
     {
         Task<IEnumerable<Category>> LoadCategoriesAsync();
-        Task<Category?> GetCategoryByIdAsync(Guid id);
+        Task<Category> GetCategoryByIdAsync(int id);
     }
 }
