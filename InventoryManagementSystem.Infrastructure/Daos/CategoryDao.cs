@@ -15,7 +15,7 @@ namespace InventoryManagementSystem.Infrastructure.Daos
             _criteria = _session.CreateCriteria<Category>();
         }
 
-        public async Task<IEnumerable<Category>> LoadEntitiesAsync()
+        public async Task<IEnumerable<Category>> ListEntitiesAsync()
         {
             using var transaction = _session.BeginTransaction();
             string descOrderBy = "CreatedAt";

@@ -9,6 +9,6 @@ namespace InventoryManagementSystem.Application.IDaos
 {
     public interface ICategoryDao : IBaseDao<Category>
     {
-        Task<IEnumerable<Category>> LoadEntitiesAsync();
+        Task<IEnumerable<Category>> ListEntitiesAsync();
     } 
 }

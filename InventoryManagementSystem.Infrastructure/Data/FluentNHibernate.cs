@@ -7,7 +7,7 @@ using InventoryManagementSystem.Infrastructure.Mappings;
 using InventoryManagementSystem.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace InventoryManagementSystem.Infrastructure.Extensions
+namespace InventoryManagementSystem.Infrastructure.Data
 {
     public static class FluentNHibernate
     {

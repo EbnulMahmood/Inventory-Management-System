@@ -5,44 +5,44 @@ namespace InventoryManagementSystem.Application.Extensions
 {
     public static class DtoConversions
     {
-        public static IEnumerable<CategoryDto> ConvertToDto(this IEnumerable<Category> categories)
-        {
-            return (from category in categories
-            select new CategoryDto
-            {
-                Id = category.Id,
-                FirstName = category.FirstName,
-                LastName = category.LastName,
-                Description = category.Description,
-                CreatedAt = category.CreatedAt,
-                ModifiedAt = category.ModifiedAt
-            }).ToList();
-        }
-
-        public static CategoryDto ConvertToDto(this Category category)
+        private static CategoryDto NewCategoryDto(Category category)
         {
             return new CategoryDto
             {
                 Id = category.Id,
-                FirstName = category.FirstName,
-                LastName = category.LastName,
+                Name = category.Name,
                 Description = category.Description,
                 CreatedAt = category.CreatedAt,
                 ModifiedAt = category.ModifiedAt
             };
         }
 
-        public static Category ConvertToEntity(this CategoryDto categoryDto)
+        private static Category NewCategory(CategoryDto categoryDto)
         {
             return new Category
             {
                 Id = categoryDto.Id,
-                FirstName = categoryDto.FirstName,
-                LastName = categoryDto.LastName,
+                Name = categoryDto.Name,
                 Description = categoryDto.Description,
                 CreatedAt = categoryDto.CreatedAt,
                 ModifiedAt = categoryDto.ModifiedAt
             };
+        }
+
+        public static IEnumerable<CategoryDto> ConvertToDto(this IEnumerable<Category> categories)
+        {
+            return (from category in categories
+            select NewCategoryDto(category)).ToList();
+        }
+
+        public static CategoryDto ConvertToDto(this Category category)
+        {
+            return NewCategoryDto(category);
+        }
+
+        public static Category ConvertToCategory(this CategoryDto categoryDto)
+        {
+            return NewCategory(categoryDto);
         }
     }
 }

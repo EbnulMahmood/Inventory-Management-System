@@ -9,9 +9,10 @@ namespace InventoryManagementSystem.Application.IServices
 {
     public interface ICategoryService
     {
-        Task<IEnumerable<CategoryDto>?> LoadEntitiesAsync(); 
+        Task<IEnumerable<CategoryDto>?> ListEntitiesAsync();
         Task<CategoryDto?> GetEntityByIdAsync(Guid id);
         Task<bool> CreateEntityAsync(CategoryDto entityDto);
         Task<bool> UpdateEntityAsync(CategoryDto entityDto);
+        IDictionary<string, string> ValidateCategoryDto(CategoryDto entityDto);
     }
 }

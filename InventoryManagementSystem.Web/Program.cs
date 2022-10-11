@@ -1,4 +1,4 @@
-using InventoryManagementSystem.Infrastructure.Extensions;
+using InventoryManagementSystem.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -2,6 +2,7 @@
 using InventoryManagementSystem.Application.Extensions;
 using InventoryManagementSystem.Application.IDaos;
 using InventoryManagementSystem.Application.IServices;
+using InventoryManagementSystem.Infrastructure.Extensions;
 
 namespace InventoryManagementSystem.Infrastructure.Services
 {
@@ -14,11 +15,24 @@ namespace InventoryManagementSystem.Infrastructure.Services
             _categoryDao = categoryDao;
         }
 
-        public async Task<IEnumerable<CategoryDto>?> LoadEntitiesAsync()
+        public IDictionary<string, string> ValidateCategoryDto(CategoryDto entityDto)
+        {
+            Guard.AgainstNullParameter(entityDto, "entityDto");
+
+            Dictionary<string, string> errors = new();
+
+            if (entityDto.Name.Trim().Length == 0)
+                errors.Add("Name", "Name is required.");
+            if (entityDto.Description.Trim().Length == 0)
+                errors.Add("Description", "Description is required.");
+            return errors;
+        }
+
+        public async Task<IEnumerable<CategoryDto>?> ListEntitiesAsync()
         {
             try
             {
-                var entities = await _categoryDao.LoadEntitiesAsync();
+                var entities = await _categoryDao.ListEntitiesAsync();
                 if (entities == null) return null;
 
                 var entitiesDto = entities.ConvertToDto();
@@ -53,7 +67,7 @@ namespace InventoryManagementSystem.Infrastructure.Services
         {
             try
             {
-                var entity = entityDto.ConvertToEntity();
+                var entity = entityDto.ConvertToCategory();
                 if (!await _categoryDao.CreateEntityAsync(entity)) return false;
                 return true;
             }
@@ -68,7 +82,7 @@ namespace InventoryManagementSystem.Infrastructure.Services
         {
             try
             {
-                var entity = entityDto.ConvertToEntity();
+                var entity = entityDto.ConvertToCategory();
                 if (!await _categoryDao.UpdateEntityAsync(entity)) return false;
                 return true;
             }
